@@ -7,24 +7,24 @@ def main():
 
     for producto in PRODUCTOS:
 
-        resultado = buscar_producto(producto["busqueda"])
+        try:
 
-        if resultado["precio"] <= producto["precio_objetivo"]:
+            resultado = buscar_producto(producto["busqueda"])
 
-            enviar_alerta(
-                resultado["producto"],
-                resultado["precio"],
-                resultado["tienda"],
-                resultado["url"],
-            )
+            print(resultado)
 
-        else:
+            if resultado["precio"] <= producto["precio_objetivo"]:
 
-            print(
-                f'{resultado["producto"]}: '
-                f'${resultado["precio"]:,} '
-                f'(objetivo ${producto["precio_objetivo"]:,})'
-            )
+                enviar_alerta(
+                    resultado["producto"],
+                    resultado["precio"],
+                    resultado["tienda"],
+                    resultado["url"],
+                )
+
+        except Exception as e:
+
+            print(e)
 
 
 if __name__ == "__main__":
