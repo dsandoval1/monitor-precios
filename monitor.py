@@ -1,19 +1,31 @@
-import os
-import requests
+from config import PRODUCTOS
+from providers import buscar_producto
+from telegram import enviar_alerta
 
-TOKEN = os.environ["TELEGRAM_TOKEN"]
-CHAT_ID = os.environ["CHAT_ID"]
 
-mensaje = "✅ ¡Price Sentinel está funcionando!\n\nEsta es una prueba desde GitHub."
+def main():
 
-url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    for producto in PRODUCTOS:
 
-requests.post(
-    url,
-    data={
-        "chat_id": CHAT_ID,
-        "text": mensaje
-    }
-)
+        resultado = buscar_producto(producto["busqueda"])
 
-print("Mensaje enviado.")
+        if resultado["precio"] <= producto["precio_objetivo"]:
+
+            enviar_alerta(
+                resultado["producto"],
+                resultado["precio"],
+                resultado["tienda"],
+                resultado["url"],
+            )
+
+        else:
+
+            print(
+                f'{resultado["producto"]}: '
+                f'${resultado["precio"]:,} '
+                f'(objetivo ${producto["precio_objetivo"]:,})'
+            )
+
+
+if __name__ == "__main__":
+    main()
