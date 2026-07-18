@@ -11,7 +11,8 @@ def main():
 
             resultado = buscar_producto(producto["busqueda"])
 
-            print(resultado)
+print("RESULTADO DEL BUSCADOR:")
+print(resultado)
 
             if resultado["precio"] <= producto["precio_objetivo"]:
 
