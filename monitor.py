@@ -13,8 +13,8 @@ def main():
 
             resultado = buscar_producto(producto["busqueda"])
 
-print("RESULTADO DEL BUSCADOR:")
-print(resultado)
+            print("RESULTADO DEL BUSCADOR:")
+            print(resultado)
 
             if resultado["precio"] <= producto["precio_objetivo"]:
 
@@ -25,8 +25,15 @@ print(resultado)
                     resultado["url"],
                 )
 
+            else:
+                print(
+                    f'No hay oferta: {resultado["precio"]} '
+                    f'> objetivo {producto["precio_objetivo"]}'
+                )
+
         except Exception as e:
 
+            print("ERROR:")
             print(e)
 
 
