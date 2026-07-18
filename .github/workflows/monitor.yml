@@ -29,4 +29,11 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: |
+          echo "===== ARCHIVOS ====="
+          ls -la
+
+          echo "===== MONITOR.PY ====="
+          cat monitor.py
+
+          echo "===== EJECUTANDO ====="
           python monitor.py
