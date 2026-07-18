@@ -2,7 +2,7 @@ from config import PRODUCTOS
 from providers import buscar_producto
 from telegram import enviar_alerta
 
-print("VERSION NUEVA DEL MONITOR")
+print("PRUEBA DANILO 123456")
 
 
 def main():
